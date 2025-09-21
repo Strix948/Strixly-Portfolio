@@ -2,7 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>About | Will (Strix/Strixly)</title>
-    <!-- Google Fonts (UPDATED) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@700&family=Fira+Mono:wght@500&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css" />
     <!-- Font Awesome Icons -->
@@ -24,37 +24,36 @@
         padding: 0;
         min-height: 100vh;
         position: relative;
+        transition: background 0.3s;
       }
-      /* Dynamic Animated Pattern Sides */
-      body::before,
-      body::after {
-        content: '';
+      .side-swirls {
         position: fixed;
         top: 0;
-        width: 60px;
+        left: 0;
+        width: 100vw;
         height: 100vh;
         pointer-events: none;
         z-index: 0;
-        opacity: 0.16;
-        animation: stripesMove 12s linear infinite alternate;
-        background: repeating-linear-gradient(
-          120deg,
-          var(--accent-main) 0 18px,
-          var(--accent-dark) 18px 38px
-        );
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
       }
-      body::before { left: 0; }
-      body::after {
-        right: 0;
-        background: repeating-linear-gradient(
-          -120deg,
-          var(--accent-main) 0 18px,
-          var(--accent-dark) 18px 38px
-        );
+      .swirl-svg {
+        width: 100px;
+        height: 100vh;
+        opacity: 0.19;
+        animation: swirl-fade 12s ease-in-out infinite alternate;
       }
-      @keyframes stripesMove {
-        0% { background-position: 0 0; }
-        100% { background-position: 0 200px; }
+      .swirl-svg.right {
+        transform: scaleX(-1);
+        animation-delay: 6s;
+      }
+      @keyframes swirl-fade {
+        0% { opacity: 0.12; filter: blur(0); }
+        25% { opacity: 0.26; filter: blur(2px);}
+        50% { opacity: 0.19; filter: blur(0.8px);}
+        75% { opacity: 0.24; filter: blur(1.2px);}
+        100% { opacity: 0.13; filter: blur(0);}
       }
       main {
         max-width: 750px;
@@ -97,27 +96,40 @@
         border-left: 4px solid #E07BE0;
         border-radius: 5px;
         padding: 0.7em 1em;
-        margin: 1.5em 0;
-        font-size: 1.1em;
+        margin: 1.8em 0 1.2em 0;
+        font-size: 1.09em;
         display: flex;
         align-items: center;
+        font-family: 'Fira Mono',monospace;
+        max-width: 670px;
       }
+      .disclaimer strong {margin-right:.45em;}
       .disclaimer i {
-        margin-right: .5em;
+        margin-right: .7em;
         color: #E07BE0;
+        font-size: 1.25em;
       }
+      /* Animated swirl-style divider, matches side swirls */
       .divider {
         border: 0;
-        height: 3px;
+        height: 8px;
         width: 100%;
         margin: 2em 0 1.4em 0;
-        background: linear-gradient(90deg, var(--accent-main) 0%, var(--accent-dark) 60%, var(--glow-main) 100%);
-        border-radius: 99px;
-        animation: moveGradient 2.5s linear infinite alternate;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--accent-main) 0 40px,
+          var(--accent-dark) 40px 80px
+        );
+        border-radius: 10px;
+        filter: blur(.2px);
+        animation: dividerwave 6s ease-in-out infinite alternate;
       }
-      @keyframes moveGradient {
-        0% {background-position: 0 0;}
-        100% {background-position: 100% 0;}
+      @keyframes dividerwave {
+        0% { filter: blur(.8px) brightness(0.93);}
+        40% { filter: blur(1.7px) brightness(1.1);}
+        50% { filter: blur(.5px) brightness(0.97);}
+        80% { filter: blur(1px) brightness(1);}
+        100% { filter: blur(.8px) brightness(1.08);}
       }
       ul {
         padding-left: 1.45em;
@@ -134,43 +146,29 @@
         margin: 1.4em 0;
         opacity: 0.86;
       }
-      .pill-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.62em;
-        margin: 0.8em 0 2.2em 0;
+      /* Improved software grid layout */
+      .software-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+        gap: 1em 1.25em;
+        margin: 1.5em 0 2.2em 0;
+        padding:0;
+        list-style-type: none;
       }
-      .pill {
-        background: var(--main-bg);
-        color: var(--text-main);
-        border-radius: 99px;
-        font-size: 1em;
-        padding: 0.32em 1.1em;
-        border: 1px solid var(--accent-main);
-        opacity: 0.96;
-      }
-      .software-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.54em;
-        margin: 1em 0 2em 0;
-      }
-      .software-pill {
+      .software-card {
         background: var(--main-bg);
         color: var(--accent-main);
-        border-radius: 99px;
-        font-size: 1em;
-        padding: 0.27em 1em 0.27em .8em;
-        border: 1px solid var(--accent-main);
-        margin-bottom: 4px;
-        opacity: 0.97;
+        border-radius: 15px;
+        font-size: 1.05em;
+        padding: 0.55em 1em 0.48em 1em;
+        border: 1.5px solid var(--accent-main);
         display: flex;
         align-items: center;
-        gap: 0.5em;
+        gap: 0.7em;
+        font-weight: bold;
+        box-shadow: 0 1.5px 10px #0006;
       }
-      .software-pill i {
-        color: var(--glow-main);
-      }
+      .software-card i { color: var(--glow-main); font-size:1.25em;}
       .social-btn, .venom-social {
         border-radius: 0 !important;
         margin-bottom: 1em;
@@ -211,8 +209,6 @@
       .facts-list li strong {
         color: var(--accent-main);
       }
-
-      /* Signature styling */
       .signature {
         font-family: 'Nothing You Could Do', cursive;
         color: var(--accent-main);
@@ -227,10 +223,60 @@
         text-shadow: 0 1px 10px #0007;
         opacity: 1;
         padding-right: .5em;
+        cursor: pointer;
+        transition: color 0.4s, text-shadow 0.4s;
+      }
+      body.rainbow-mode {
+        --main-bg: #1a1937;
+        --text-main: #fff;
+        --accent-main: #fb5caa;
+        --accent-dark: #6555e3;
+        --glow-main: #fbf35c;
+        background: linear-gradient(120deg, #fb5caa 0%, #fbf35c 40%, #66e8dc 80%, #6555e3 100%);
+        background-size: 350% 350%;
+        animation: rainbowbgmove 7s linear infinite alternate;
+      }
+      /* Rainbow mode animated for accent and divider lines as well */
+      @keyframes rainbowbgmove {
+        0% {background-position: 100% 0%;}
+        100%{background-position: 0% 100%;}
+      }
+      body.rainbow-mode .signature {
+        color: #fb5caa;
+        text-shadow: 0 1px 18px #fbf35c, 0 2px 6px #6555e3;
       }
     </style>
   </head>
   <body>
+    <!-- SVG edge swirls -->
+    <div class="side-swirls">
+      <svg class="swirl-svg" viewBox="0 0 80 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="leftswirl" x1="0" y1="0" x2="80" y2="800" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#E07BE0" />
+            <stop offset="1" stop-color="#392F5A" />
+          </linearGradient>
+        </defs>
+        <path d="M40,10 Q0,120 40,220 T40,410 Q70,480 10,600 T60,790" stroke="url(#leftswirl)" stroke-width="12" fill="none"/>
+        <circle cx="33" cy="120" r="13" fill="#E07BE0" opacity="0.27"/>
+        <circle cx="61" cy="325" r="7" fill="#392F5A" opacity="0.3"/>
+        <circle cx="45" cy="540" r="11" fill="#E07BE0" opacity="0.15"/>
+        <circle cx="28" cy="720" r="8" fill="#E07BE0" opacity="0.22"/>
+      </svg>
+      <svg class="swirl-svg right" viewBox="0 0 80 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="rightswirl" x1="80" y1="0" x2="0" y2="800" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#392F5A" />
+            <stop offset="1" stop-color="#E07BE0" />
+          </linearGradient>
+        </defs>
+        <path d="M40,30 Q80,180 45,280 T40,400 Q10,540 70,650 T12,780" stroke="url(#rightswirl)" stroke-width="12" fill="none"/>
+        <circle cx="50" cy="160" r="13" fill="#E07BE0" opacity="0.22"/>
+        <circle cx="21" cy="460" r="11" fill="#392F5A" opacity="0.18"/>
+        <circle cx="62" cy="700" r="10" fill="#E07BE0" opacity="0.17"/>
+        <circle cx="18" cy="385" r="7" fill="#E07BE0" opacity="0.19"/>
+      </svg>
+    </div>
     <main>
       <h1>About Me</h1>
       <h2>Will <span style="font-size:1em; color:var(--accent-main);">(Strix/Strixly)</span></h2>
@@ -261,17 +307,17 @@
       <div class="divider"></div>
 
       <h3>Software I Use</h3>
-      <div class="software-list">
-        <span class="software-pill"><i class="fab fa-adobe"></i>Adobe Photoshop</span>
-        <span class="software-pill"><i class="fab fa-adobe"></i>Adobe Illustrator</span>
-        <span class="software-pill"><i class="fab fa-adobe"></i>Adobe Premiere Pro</span>
-        <span class="software-pill"><i class="fab fa-adobe"></i>Adobe Lightroom</span>
-        <span class="software-pill"><i class="fab fa-adobe"></i>Adobe Animate</span>
-        <span class="software-pill"><i class="fas fa-pen-nib"></i>Procreate</span>
-        <span class="software-pill"><i class="fas fa-image"></i>Pixlr E</span>
-        <span class="software-pill"><i class="fas fa-image"></i>PicsArt</span>
-        <span class="software-pill"><i class="fas fa-camera-retro"></i>Canon EOS Utility</span>
-      </div>
+      <ul class="software-grid">
+        <li class="software-card"><i class="fab fa-adobe"></i>Adobe Photoshop</li>
+        <li class="software-card"><i class="fab fa-adobe"></i>Adobe Illustrator</li>
+        <li class="software-card"><i class="fab fa-adobe"></i>Adobe Premiere Pro</li>
+        <li class="software-card"><i class="fab fa-adobe"></i>Adobe Lightroom</li>
+        <li class="software-card"><i class="fab fa-adobe"></i>Adobe Animate</li>
+        <li class="software-card"><i class="fas fa-pen-nib"></i>Procreate</li>
+        <li class="software-card"><i class="fas fa-image"></i>Pixlr E</li>
+        <li class="software-card"><i class="fas fa-image"></i>PicsArt</li>
+        <li class="software-card"><i class="fas fa-camera-retro"></i>Canon EOS Utility</li>
+      </ul>
 
       <div class="divider"></div>
 
@@ -335,7 +381,13 @@
            target="_blank" rel="noopener"><i class="fas fa-cloud"></i> Bluesky</a>
       </div>
 
-      <span class="signature">Strix xoxo</span>
+      <span class="signature" id="strixSig">Strix xoxo</span>
+      <script>
+        // Rainbow mode Easter Egg
+        document.getElementById("strixSig").addEventListener("dblclick", function () {
+          document.body.classList.add("rainbow-mode");
+        });
+      </script>
     </main>
   </body>
 </html>
