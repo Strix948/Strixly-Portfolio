@@ -7,40 +7,50 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css" />
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/2f017e28e2.js" crossorigin="anonymous"></script>
     <style>
+      :root {
+        --main-bg: #000000;
+        --accent-main: #E07BE0;
+        --accent-dark: #392F5A;
+        --text-main: #E2E2E2;
+        --border-main: #E2E2E2;
+        --glow-main: #E07BE0;
+      }
       body {
         font-family: 'Open Sans', Arial, sans-serif;
-        background: #111;
-        color: #eaeaea;
+        background: var(--main-bg);
+        color: var(--text-main);
         margin: 0;
         padding: 0;
       }
       main {
         max-width: 750px;
         margin: 3em auto;
-        background: #18181b;
+        background: var(--accent-dark);
         padding: 2.5em 2em 2em 2em;
         border-radius: 20px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.11);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        border: 1.5px solid var(--border-main);
       }
       h1, h2, h3 {
         font-family: 'Montserrat', Arial, sans-serif;
         margin-bottom: 0.15em;
+        letter-spacing: 0.01em;
       }
       h1 {
-        color: #e4405f;
+        color: var(--accent-main);
         font-size: 2.55rem;
-        text-shadow: 1px 1px 6px #18181b80;
+        text-shadow: 1px 1px 6px var(--main-bg);
       }
       h2 {
-        color: #44e0c2;
+        color: var(--glow-main);
         font-size: 1.38rem;
         margin-top: 1.28em;
       }
       h3 {
-        color: #fabf1a;
+        color: var(--accent-main);
         font-size: 1.12rem;
         margin-top: 1.38em;
       }
@@ -49,27 +59,28 @@
         height: 3px;
         width: 100%;
         margin: 2em 0 1.4em 0;
-        background: linear-gradient(90deg, #e4405f 0%, #fabf1a 50%, #44e0c2 100%);
+        background: linear-gradient(90deg, var(--accent-main) 0%, var(--accent-dark) 60%, var(--glow-main) 100%);
         border-radius: 99px;
         animation: moveGradient 2.5s linear infinite alternate;
       }
       @keyframes moveGradient {
-        0% {background-position: 0%;}
-        100% {background-position: 100%;}
+        from {background-position: 0 0;}
+        to {background-position: 100% 0;}
       }
       ul {
         padding-left: 1.45em;
         line-height: 1.7;
       }
       strong {
-        color: #CF6EF4;
+        color: var(--accent-main);
       }
       blockquote {
-        border-left: 3px solid #33b7e7;
-        color: #bbbbbb;
+        border-left: 3px solid var(--accent-main);
+        color: var(--text-main);
         padding-left: 1em;
         font-style: italic;
         margin: 1.4em 0;
+        opacity: 0.86;
       }
       .pill-list {
         display: flex;
@@ -78,13 +89,13 @@
         margin: 0.8em 0 2.2em 0;
       }
       .pill {
-        background: #232a37;
-        color: #eaeaea;
+        background: var(--main-bg);
+        color: var(--text-main);
         border-radius: 99px;
         font-size: 1em;
         padding: 0.32em 1.1em;
-        border: 1px solid #293749;
-        opacity: 0.88;
+        border: 1px solid var(--accent-main);
+        opacity: 0.96;
       }
       .software-list {
         display: flex;
@@ -93,31 +104,50 @@
         margin: 1em 0 2em 0;
       }
       .software-pill {
-        background: #232a37;
-        color: #fabf1a;
+        background: var(--main-bg);
+        color: var(--accent-main);
         border-radius: 99px;
         font-size: 1em;
-        padding: 0.27em 1em 0.27em .7em;
-        border: 1px solid #C9A70B;
+        padding: 0.27em 1em 0.27em .8em;
+        border: 1px solid var(--accent-main);
         margin-bottom: 4px;
-        opacity: 0.94;
+        opacity: 0.97;
         display: flex;
         align-items: center;
         gap: 0.5em;
+      }
+      .software-pill i {
+        color: var(--glow-main) !important;
       }
       .social-btn {
         margin-bottom: 1em;
         display: flex;
         align-items: center;
-        gap: 0.6em;
+        gap: 0.55em;
         font-size: 1.1em;
+        padding: 0.5em 1.15em;
+        background: linear-gradient(100deg, var(--accent-dark) 7%, var(--accent-main) 92%);
+        color: var(--text-main) !important;
+        border-radius: 7px;
+        text-decoration: none !important;
+        box-shadow: 0 1px 6px #0009;
+        min-width: 120px;
+        border: 1.5px solid var(--accent-main);
+        text-align: center;
+        transition: background 0.15s, transform 0.12s;
       }
       .social-btn i {
         font-size: 1.15em;
+        color: var(--glow-main);
+      }
+      .social-btn:hover {
+        background: linear-gradient(100deg, var(--accent-main) 20%, var(--glow-main) 95%);
+        color: var(--accent-dark) !important;
+        transform: scale(1.06);
       }
       .venom-btn {
-        background: linear-gradient(90deg, #e75124 0%, #231f20 120%);
-        color: #fff;
+        background: linear-gradient(90deg, var(--accent-main) 0%, var(--main-bg) 135%);
+        color: var(--text-main);
         border-radius: 8px;
         padding: 0.62em 1.35em;
         text-decoration: none;
@@ -127,26 +157,32 @@
         font-family: 'Montserrat', Arial, sans-serif;
         letter-spacing: 0.02em;
         box-shadow: 0 2px 8px #05050538;
-        transition: transform .15s;
+        border: 1px solid var(--glow-main);
+        transition: transform .15s, background 0.15s;
       }
       .venom-btn:hover {
         transform: scale(1.06);
-        background: linear-gradient(90deg, #231f20 15%, #e75124 100%);
+        background: linear-gradient(90deg, var(--main-bg) 10%, var(--glow-main) 100%);
+        color: var(--accent-dark);
+      }
+      .venom-btn i {
+        margin-right: .5em;
+        color: var(--glow-main);
       }
       .facts-list {
         line-height: 1.6;
         margin-bottom: 1.8em;
-        color: #44e0c2;
+        color: var(--glow-main);
       }
       .facts-list li strong {
-        color: #fabf1a;
+        color: var(--accent-main);
       }
     </style>
   </head>
   <body>
     <main>
       <h1>About Me</h1>
-      <h2>Will <span style="font-size:1em; color:#fabf1a;">(Strix/Strixly)</span></h2>
+      <h2>Will <span style="font-size:1em; color:var(--accent-main);">(Strix/Strixly)</span></h2>
 
       <blockquote>
         “I enjoy the weird and wacky—creativity should surprise you, and experimentation is key!”
@@ -158,7 +194,7 @@
         <strong>Hi, I’m Will!</strong> I’m passionate about <strong>creative design</strong>: fine art, photography, graphic design, and film &amp; video production. Raised in England, I’ve created art since I was young—always curious about new ways to express ideas.
       </p>
       <p>
-        As a self-taught image editor, I started with free tools like <strong>Pixlr E</strong> and <strong>PicsArt</strong> on my phone. In school and college, I developed my <strong>Adobe Suite</strong> skills for editing, manipulation, digital drawing, and video production. I mostly use <span style="color:#fabf1a;"><strong>Photoshop</strong></span> for illustration and edits, sometimes <strong>Illustrator</strong> for graphics, and <strong>Premiere Pro</strong> for film/video. I’m learning <strong>Adobe Animate</strong> for animation and use <strong>Procreate</strong> on my iPad for concept art and digital painting.
+        As a self-taught image editor, I started with free tools like <strong>Pixlr E</strong> and <strong>PicsArt</strong> on my phone. In school and college, I developed my <strong>Adobe Suite</strong> skills for editing, manipulation, digital drawing, and video production. I mostly use <span style="color:var(--accent-main);"><strong>Photoshop</strong></span> for illustration and edits, sometimes <strong>Illustrator</strong> for graphics, and <strong>Premiere Pro</strong> for film/video. I’m learning <strong>Adobe Animate</strong> for animation and use <strong>Procreate</strong> on my iPad for concept art and digital painting.
       </p>
       <p>
         Recent photography and videography have been shot on my Canon EOS 2000D, but I’m now making the most of my iPhone 14 until I can upgrade my camera. I’ve explored traditional mediums forever: pencil/ink drawing, watercolours, oils, acrylics, monoprinting, cyanotypes, and more.
@@ -212,7 +248,7 @@
 
       <h3>Collaborations</h3>
       <p>
-        I’ve completed photography &amp; videography work for <strong>musician and content creator</strong> <span style="color: #e4405f;">the.ven0m</span>.
+        I’ve completed photography &amp; videography work for <strong>musician and content creator</strong> <span style="color: var(--accent-main);">the.ven0m</span>.
       </p>
       <a href="https://linktr.ee/the.ven0m?utm_source=linktree_profile_share&ltsid=1749b723-1d27-4b89-ab8d-de2f8620c746" class="venom-btn" target="_blank" rel="noopener"><i class="fas fa-link"></i> the.ven0m on Socials</a>
 
@@ -220,11 +256,11 @@
 
       <h3>Follow Me</h3>
       <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
-        <a href="https://www.instagram.com/strixly948?igsh=MWFhdWNzcTBvam56cw%3D%3D&utm_source=qr" class="social-btn" style="padding: 0.5em 1.2em; background: #e4405f; color: #fff; border-radius: 6px; text-decoration: none; min-width:120px; text-align:center;" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://www.youtube.com/@Strix948" class="social-btn" style="padding: 0.5em 1.2em; background: #ff0000; color: #fff; border-radius: 6px; text-decoration: none; min-width:120px; text-align:center;" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://www.tiktok.com/@strix948?_t=ZN-8zuuhkJr9E6&_r=1" class="social-btn" style="padding: 0.5em 1.2em; background: #000; color: #fff; border-radius: 6px; text-decoration: none; min-width:120px; text-align:center;" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a>
-        <a href="https://x.com/strix948?s=21&t=EdB6I1KU-Oo2m7q4l4AvfQ" class="social-btn" style="padding: 0.5em 1.2em; background: #1da1f2; color: #fff; border-radius: 6px; text-decoration: none; min-width:120px; text-align:center;" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> Twitter/X</a>
-        <a href="https://bsky.app/profile/strix948.bsky.social" class="social-btn" style="padding: 0.5em 1.2em; background: #0085ff; color: #fff; border-radius: 6px; text-decoration: none; min-width:120px; text-align:center;" target="_blank" rel="noopener"><i class="fas fa-cloud"></i> Bluesky</a>
+        <a href="https://www.instagram.com/strixly948?igsh=MWFhdWNzcTBvam56cw%3D%3D&utm_source=qr" class="social-btn" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.youtube.com/@Strix948" class="social-btn" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="https://www.tiktok.com/@strix948?_t=ZN-8zuuhkJr9E6&_r=1" class="social-btn" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a href="https://x.com/strix948?s=21&t=EdB6I1KU-Oo2m7q4l4AvfQ" class="social-btn" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> Twitter/X</a>
+        <a href="https://bsky.app/profile/strix948.bsky.social" class="social-btn" target="_blank" rel="noopener"><i class="fas fa-cloud"></i> Bluesky</a>
       </div>
     </main>
   </body>
