@@ -1,0 +1,345 @@
+/* Global Reset and base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-bg: #000000;
+  --accent-main: #E07BE0;
+  --accent-dark: #392F5A;
+  --text-main: #E2E2E2;
+  --border-main: #E2E2E2;
+  --glow-main: #E07BE0;
+}
+
+/* Main backgrounds and body */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--main-bg);
+  color: var(--text-main);
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  background-color: var(--accent-dark);
+  padding: 15px 20px;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  border-bottom: 1.5px solid var(--accent-main);
+}
+
+.nav-logo {
+  font-size: 1.8rem;
+  color: var(--accent-main);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 15px;
+  transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+  border-radius: 0;
+  position: relative;
+}
+
+.nav-link:hover {
+  background: var(--accent-main);
+  color: var(--main-bg);
+  box-shadow: 0 0 6px var(--accent-main);
+}
+
+.nav-link.active {
+  background: var(--accent-main);
+  color: var(--main-bg);
+  box-shadow: 0 0 10px var(--accent-main);
+}
+
+/* Page header and section titles */
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.neon-text {
+  color: var(--accent-main);
+  text-shadow:
+    0 0 3px var(--glow-main),
+    0 0 8px var(--glow-main);
+}
+
+.section-title {
+  margin-bottom: 25px;
+  color: var(--accent-main);
+}
+
+/* Sub-text */
+.sub-text {
+  color: #c1bdd1;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+/* Content Section */
+.content-section {
+  max-width: 960px;
+  margin: 0 auto 50px auto;
+  padding: 0 15px;
+  background: var(--main-bg);
+  border: 1px solid var(--border-main);
+  border-radius: 0;
+}
+
+/* Carousel */
+.carousel {
+  position: relative;
+  max-width: 960px;
+  height: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: 0 0 8px var(--accent-main);
+}
+
+.carousel-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  border-radius: 0;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 10;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-main);
+  background: var(--accent-dark);
+  border: none;
+  padding: 12px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 6px var(--accent-main);
+  user-select: none;
+  outline: none;
+  z-index: 20;
+}
+
+.carousel-btn:hover {
+  background-color: var(--accent-main);
+  color: var(--main-bg);
+}
+
+.carousel-btn.prev {
+  left: 20px;
+}
+
+.carousel-btn.next {
+  right: 20px;
+}
+
+/* Gallery styling */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+.clickable-img,
+.clickable-video {
+  max-width: 100%;
+  max-height: 180px;
+  border-radius: 0;
+  box-shadow: 0 0 8px var(--accent-main);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.clickable-img:hover,
+.clickable-video:hover {
+  transform: scale(1.04);
+}
+
+.youtube-embed iframe {
+  border-radius: 0;
+  box-shadow: 0 0 8px var(--accent-main);
+  margin: 5px auto;
+  display: block;
+  max-width: 300px;
+  height: 170px;
+}
+
+/* Lightbox modal */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(57,47,90, 0.96);
+  backdrop-filter: blur(5px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: zoom-out;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 0;
+  box-shadow: 0 0 18px var(--accent-main);
+  transition: transform 0.3s;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  font-size: 3rem;
+  color: var(--text-main);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s;
+  border-radius: 0;
+}
+
+.lightbox-close:hover {
+  color: var(--accent-main);
+}
+
+/* Contact page form and socials */
+.contact-section {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid var(--accent-main);
+  border-radius: 0;
+  background: var(--accent-dark);
+  color: var(--text-main);
+  font-size: 1rem;
+  resize: vertical;
+}
+
+form button.btn {
+  width: 100%;
+  background: var(--accent-main);
+  border: none;
+  padding: 14px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--main-bg);
+  border-radius: 0;
+  box-shadow: 0 0 6px var(--accent-main);
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+form button.btn:hover {
+  background: var(--accent-dark);
+  color: var(--text-main);
+  box-shadow: 0 0 10px var(--accent-dark);
+}
+
+.social-buttons {
+  margin-top: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.social-buttons .btn.social {
+  min-width: 100px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 0;
+  color: var(--text-main);
+  text-decoration: none;
+  box-shadow: 0 0 8px var(--accent-main);
+  background: var(--accent-main);
+  transition: box-shadow 0.3s, background 0.3s, color 0.3s;
+  border: none;
+}
+
+.social-buttons .btn.social.instagram {
+  background: linear-gradient(45deg, #B37BA4, #E1306C 70%);
+}
+.social-buttons .btn.social.tiktok {
+  background: #392F5A;
+}
+.social-buttons .btn.social.youtube {
+  background: #E52D27;
+}
+
+.social-buttons .btn.social:hover {
+  background: var(--accent-dark);
+  color: var(--accent-main);
+  box-shadow: 0 0 16px var(--accent-main);
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .carousel {
+    height: 260px;
+  }
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+  }
+  .social-buttons {
+    flex-direction: column;
+  }
+  .social-buttons .btn.social {
+    min-width: auto;
+  }
+}
