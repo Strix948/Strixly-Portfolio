@@ -4,45 +4,228 @@
   <head>
     <meta charset="UTF-8" />
     <title>About | Will (Strix/Strixly)</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css" />
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/2f017e28e2.js" crossorigin="anonymous"></script>
+    <style>
+      body {
+        font-family: 'Open Sans', Arial, sans-serif;
+        background: #111;
+        color: #eaeaea;
+        margin: 0;
+        padding: 0;
+      }
+      main {
+        max-width: 750px;
+        margin: 3em auto;
+        background: #18181b;
+        padding: 2.5em 2em 2em 2em;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.11);
+      }
+      h1, h2, h3 {
+        font-family: 'Montserrat', Arial, sans-serif;
+        margin-bottom: 0.15em;
+      }
+      h1 {
+        color: #e4405f;
+        font-size: 2.55rem;
+        text-shadow: 1px 1px 6px #18181b80;
+      }
+      h2 {
+        color: #44e0c2;
+        font-size: 1.38rem;
+        margin-top: 1.28em;
+      }
+      h3 {
+        color: #fabf1a;
+        font-size: 1.12rem;
+        margin-top: 1.38em;
+      }
+      .divider {
+        border: 0;
+        height: 3px;
+        width: 100%;
+        margin: 2em 0 1.4em 0;
+        background: linear-gradient(90deg, #e4405f 0%, #fabf1a 50%, #44e0c2 100%);
+        border-radius: 99px;
+        animation: moveGradient 2.5s linear infinite alternate;
+      }
+      @keyframes moveGradient {
+        0% {background-position: 0%;}
+        100% {background-position: 100%;}
+      }
+      ul {
+        padding-left: 1.45em;
+        line-height: 1.7;
+      }
+      strong {
+        color: #CF6EF4;
+      }
+      blockquote {
+        border-left: 3px solid #33b7e7;
+        color: #bbbbbb;
+        padding-left: 1em;
+        font-style: italic;
+        margin: 1.4em 0;
+      }
+      .pill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.62em;
+        margin: 0.8em 0 2.2em 0;
+      }
+      .pill {
+        background: #232a37;
+        color: #eaeaea;
+        border-radius: 99px;
+        font-size: 1em;
+        padding: 0.32em 1.1em;
+        border: 1px solid #293749;
+        opacity: 0.88;
+      }
+      .software-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.54em;
+        margin: 1em 0 2em 0;
+      }
+      .software-pill {
+        background: #232a37;
+        color: #fabf1a;
+        border-radius: 99px;
+        font-size: 1em;
+        padding: 0.27em 1em 0.27em .7em;
+        border: 1px solid #C9A70B;
+        margin-bottom: 4px;
+        opacity: 0.94;
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+      }
+      .social-btn {
+        margin-bottom: 1em;
+        display: flex;
+        align-items: center;
+        gap: 0.6em;
+        font-size: 1.1em;
+      }
+      .social-btn i {
+        font-size: 1.15em;
+      }
+      .venom-btn {
+        background: linear-gradient(90deg, #e75124 0%, #231f20 120%);
+        color: #fff;
+        border-radius: 8px;
+        padding: 0.62em 1.35em;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        margin: 1em 0 1.7em 0;
+        font-family: 'Montserrat', Arial, sans-serif;
+        letter-spacing: 0.02em;
+        box-shadow: 0 2px 8px #05050538;
+        transition: transform .15s;
+      }
+      .venom-btn:hover {
+        transform: scale(1.06);
+        background: linear-gradient(90deg, #231f20 15%, #e75124 100%);
+      }
+      .facts-list {
+        line-height: 1.6;
+        margin-bottom: 1.8em;
+        color: #44e0c2;
+      }
+      .facts-list li strong {
+        color: #fabf1a;
+      }
+    </style>
   </head>
   <body>
     <main>
       <h1>About Me</h1>
-      <h2>Hi, I’m Will <span style="font-size:1em;">(Strix/Strixly)</span></h2>
+      <h2>Will <span style="font-size:1em; color:#fabf1a;">(Strix/Strixly)</span></h2>
+
+      <blockquote>
+        “I enjoy the weird and wacky—creativity should surprise you, and experimentation is key!”
+      </blockquote>
+
+      <div class="divider"></div>
+
       <p>
-        I’m passionate about all forms of creative design—from fine art, photography, and graphic design to film and video production. Born and raised in England, I’ve enjoyed making art since I was young.
+        <strong>Hi, I’m Will!</strong> I’m passionate about <strong>creative design</strong>: fine art, photography, graphic design, and film &amp; video production. Raised in England, I’ve created art since I was young—always curious about new ways to express ideas.
       </p>
+      <p>
+        As a self-taught image editor, I started with free tools like <strong>Pixlr E</strong> and <strong>PicsArt</strong> on my phone. In school and college, I developed my <strong>Adobe Suite</strong> skills for editing, manipulation, digital drawing, and video production. I mostly use <span style="color:#fabf1a;"><strong>Photoshop</strong></span> for illustration and edits, sometimes <strong>Illustrator</strong> for graphics, and <strong>Premiere Pro</strong> for film/video. I’m learning <strong>Adobe Animate</strong> for animation and use <strong>Procreate</strong> on my iPad for concept art and digital painting.
+      </p>
+      <p>
+        Recent photography and videography have been shot on my Canon EOS 2000D, but I’m now making the most of my iPhone 14 until I can upgrade my camera. I’ve explored traditional mediums forever: pencil/ink drawing, watercolours, oils, acrylics, monoprinting, cyanotypes, and more.
+      </p>
+      <p>
+        I'm always experimenting and love seeing how different media can combine to create unique visual identities. Inspiration comes from nature, surroundings, and even current events or pop culture.
+      </p>
+
+      <div class="divider"></div>
+
       <h3>Education</h3>
       <ul>
-        <li>
-          <strong>Secondary School:</strong>
-          <ul>
-            <li>Art & Design</li>
-            <li>Design & Technology</li>
-            <li>Creative iMedia</li>
-          </ul>
-        </li>
-        <li>
-          <strong>College (A Levels & BTEC):</strong>
-          <ul>
-            <li>Fine Art (A Level)</li>
-            <li>Graphics (A Level)</li>
-            <li>Video & Film Production (BTEC)</li>
-          </ul>
-        </li>
+        <li><strong>Secondary School:</strong> Art &amp; Design, Design &amp; Technology, Creative iMedia</li>
+        <li><strong>College (A Levels &amp; BTEC):</strong> Fine Art, Graphics, Video &amp; Film Production</li>
       </ul>
+
+      <div class="divider"></div>
+
+      <h3>Software I Use</h3>
+      <div class="software-list">
+        <span class="software-pill"><i class="fab fa-adobe"></i>Adobe Photoshop</span>
+        <span class="software-pill"><i class="fab fa-adobe"></i>Adobe Illustrator</span>
+        <span class="software-pill"><i class="fab fa-adobe"></i>Adobe Premiere Pro</span>
+        <span class="software-pill"><i class="fab fa-adobe"></i>Adobe Lightroom</span>
+        <span class="software-pill"><i class="fab fa-adobe"></i>Adobe Animate</span>
+        <span class="software-pill"><i class="fas fa-pen-nib"></i>Procreate</span>
+        <span class="software-pill"><i class="fas fa-image"></i>Pixlr E</span>
+        <span class="software-pill"><i class="fas fa-image"></i>PicsArt</span>
+        <span class="software-pill"><i class="fas fa-palette"></i>Canva</span>
+        <span class="software-pill"><i class="fas fa-camera-retro"></i>Canon EOS Utility</span>
+        <span class="software-pill"><i class="fas fa-code"></i>VS Code</span>
+        <span class="software-pill"><i class="fas fa-star"></i>Astro</span>
+        <span class="software-pill"><i class="fas fa-cloud"></i>Netlify</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3>Fun Facts & Things I Enjoy</h3>
+      <ul class="facts-list">
+        <li><strong>Experimenting</strong> with new art mediums & styles</li>
+        <li><strong>Gaming</strong> & all things tech</li>
+        <li><strong>Music</strong>, TV &amp; films</li>
+        <li>Learning <strong>instruments</strong> (still work in progress!)</li>
+        <li>Capturing everyday weirdness through <strong>photo &amp; video</strong></li>
+        <li>Nature walks &amp; finding inspiration outdoors</li>
+        <li><strong>Pop culture</strong> & keeping up with trends</li>
+        <li><strong>Branding</strong> & self-promotion—done all my own work!</li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <h3>Collaborations</h3>
       <p>
-        I created this portfolio to share my past and ongoing work—whether projects from school or art and media made in my free time. I’m a fan of the weird and wacky. This is a space to document my creative journey and to connect with others who appreciate unique perspectives!
+        I’ve completed photography &amp; videography work for <strong>musician and content creator</strong> <span style="color: #e4405f;">the.ven0m</span>.
       </p>
-      <p>
-        Check out my work as I remember to update it, or connect with me below!
-      </p>
-<h3>Follow Me</h3>
-<div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
-  <a href="https://www.instagram.com/strixly948?igsh=MWFhdWNzcTBvam56cw%3D%3D&utm_source=qr" class="social-btn" style="padding: 0.5em 1.2em; background: #e4405f; color: #fff; border-radius: 6px; text-decoration: none; min-width:110px; text-align:center;" target="_blank" rel="noopener">Instagram</a>
-  <a href="https://www.youtube.com/@Strix948" class="social-btn" style="padding: 0.5em 1.2em; background: #ff0000; color: #fff; border-radius: 6px; text-decoration: none; min-width:110px; text-align:center;" target="_blank" rel="noopener">YouTube</a>
-  <a href="https://www.tiktok.com/@strix948?_t=ZN-8zuuhkJr9E6&_r=1" class="social-btn" style="padding: 0.5em 1.2em; background: #000; color: #fff; border-radius: 6px; text-decoration: none; min-width:110px; text-align:center;" target="_blank" rel="noopener">TikTok</a>
-  <a href="https://x.com/strix948?s=21&t=EdB6I1KU-Oo2m7q4l4AvfQ" class="social-btn" style="padding: 0.5em 1.2em; background: #1da1f2; color: #fff; border-radius: 6px; text-decoration: none; min-width:110px; text-align:center;" target="_blank" rel="noopener">Twitter/X</a>
-  <a href="https://bsky.app/profile/strix948.bsky.social" class="social-btn" style="padding: 0.5em 1.2em; background: #0085ff; color: #fff; border-radius: 6px; text-decoration: none; min-width:110px; text-align:center;" target="_blank" rel="noopener">Bluesky</a>
-</div>
+      <a href="https://linktr.ee/the.ven0m?utm_source=linktree_profile_share&ltsid=1749b723-1d27-4b89-ab8d-de2f8620c746" class="venom-btn" target="_blank" rel="noopener"><i class="fas fa-link"></i> the.ven0m on Socials</a>
+
+      <div class="divider"></div>
+
+      <h3>Follow Me</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+        <a href="https://www.instagram.com/strixly948?igsh=MWFhdWNzcTBvam56cw%3D%3D&utm_source=qr" class="social-btn" style="padding: 0.5em 1.2em; background: #e4405f; color: #fff; border-radius: 6px; text-decoration: none; min-width:120px; text-align:center;" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.youtube.com/@Strix948" class="social-btn" style="padding: 0.5em 1.2em; background: #ff0000; color: #fff; border-radius: 6px; text-decoration: none; min-width:120px; text-align:center;" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="https://www.tiktok.com/@strix948?_t=ZN-8zuuhkJr9E6&_r=1" class="social-btn" style="padding: 0.5em 1.2em; background: #000; color: #fff; border-radius: 6px; text-decoration: none; min-width:120px; text-align:center;" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a href="https://x.com/strix948?s=21&t=EdB6I1KU-Oo2m7q4l4AvfQ" class="social-btn" style="padding: 0.5em 1.2em; background: #1da1f2; color: #fff; border-radius: 6px; text-decoration: none; min-width:120px; text-align:center;" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> Twitter/X</a>
+        <a href="https://bsky.app/profile/strix948.bsky.social" class="social-btn" style="padding: 0.5em 1.2em; background: #0085ff; color: #fff; border-radius: 6px; text-decoration: none; min-width:120px; text-align:center;" target="_blank" rel="noopener"><i class="fas fa-cloud"></i> Bluesky</a>
+      </div>
+    </main>
+  </body>
+</html>
