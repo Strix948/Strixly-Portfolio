@@ -1,8 +1,72 @@
 ---
 ---
-<!-- ...head and styles same as art.astro above... -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Photography | Strixly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@700&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+      :root {
+        --main-bg: #000000;
+        --main-bg2: #1a1027;
+        --accent-main: #E07BE0;
+        --accent-dark: #392F5A;
+        --text-main: #E2E2E2;
+      }
+      body {
+        background: linear-gradient(160deg, var(--main-bg) 0%, var(--main-bg2) 100%);
+        color: var(--text-main);
+        font-family: 'Inter', Arial, sans-serif;
+        margin:0; padding:0; min-height:100vh; overflow-x:hidden;
+      }
+      .main-nav { /* nav bar styles, same as before */ }
+      .nav-brand { /* as before */ }
+      .nav-links { /* as before */ }
+      .nav-link { /* as before */ }
+      .nav-link:hover, .nav-link.active { color: var(--accent-main); }
+
+      #all-dots-canvas {
+        position: fixed; top:0; left:0; width:100vw; height:100vh;
+        pointer-events: none; z-index:0; opacity:0.38; transition: opacity .7s;
+      }
+      .gallery-container {
+        max-width: 900px; margin: 3em auto 0 auto;
+        padding: 2.2em 1.2em 4em 1.2em;
+        background: #23202a; border-radius:2em;
+        box-shadow:0 9px 30px #18102b44; border:2px solid #E07BE0; position:relative; z-index:1;
+      }
+      .section-title {
+        color: #E07BE0; font-size:2em; font-family:'Poppins',sans-serif;
+        margin:1.6em 0 1em .0em; text-align:left;
+      }
+      .gallery {
+        display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+        gap:1.2em; margin-bottom:2em;
+      }
+      .gallery figure { margin:0;}
+      .gallery img {
+        width:100%; border-radius:1em; box-shadow:0 2px 22px #392F5A33; background: #181820;
+      }
+      .gallery figcaption { color:#E2E2E2; text-align:center; font-size:1em; margin:.3em 0 0 0;}
+      @media (max-width:700px) {
+        .gallery-container{padding:6vw 2vw;}
+        .gallery{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
+      }
+    </style>
+  </head>
+  <body>
     <nav class="main-nav">
-      <!-- ...nav bar... -->
+      <div class="nav-content">
+        <span class="nav-brand">Strixly</span>
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/about" class="nav-link">About</a></li>
+          <li><a href="/art" class="nav-link">Art</a></li>
+          <li><a href="/photo" class="nav-link active">Photography</a></li>
+          <li><a href="/video" class="nav-link">Videography</a></li>
+        </ul>
+      </div>
     </nav>
     <canvas id="all-dots-canvas"></canvas>
     <div class="gallery-container">
@@ -10,24 +74,44 @@
       <div class="gallery" id="cloudinary-gallery"></div>
     </div>
     <script>
-      // Dots background (copy from above)
-      /* ... dots code same as Art page ... */
-      // Cloudinary auto gallery for Photo
+      // Dots background
+      const canvas = document.getElementById("all-dots-canvas");
+      const ctx = canvas.getContext("2d");
+      const colorNormal = ["#E07BE0","#392F5A"];
+      let w = window.innerWidth, h = window.innerHeight;
+      let dots = [];
+      function resizeDots() { w = window.innerWidth; h = window.innerHeight; canvas.width = w; canvas.height = h; }
+      window.addEventListener("resize", resizeDots);
+      function spawnDots() { dots = []; let totalDots = Math.floor(w*h/7000);
+        for(let i=0;i<totalDots;++i) {
+          const x = Math.random()*w, y=Math.random()*h, size=Math.random()*17+9,
+          delay=Math.random()*7.5, life=(Math.random()*6)+4;
+          dots.push({ x,y,size, color:colorNormal[Math.floor(Math.random()*colorNormal.length)], t: Math.random()*10, life, delay }); }}
+      function animateDots() {
+        ctx.clearRect(0,0,w,h); let tm=Date.now()/1000;
+        for(const dot of dots) {
+          let localTime=(tm+dot.delay+dot.t)%dot.life,
+          alpha=localTime<.3?localTime/.3:localTime>dot.life-.3?1-(localTime-(dot.life-.3))/.3:1;
+          ctx.beginPath(); ctx.arc(dot.x,dot.y,dot.size,0,Math.PI*2);
+          ctx.fillStyle=dot.color.replace(')',`,`+0.22*alpha+')').replace('rgb(','rgba(');
+          ctx.globalAlpha=0.32*alpha; ctx.shadowColor=dot.color; ctx.shadowBlur=6; ctx.fill();
+          ctx.globalAlpha=1; ctx.shadowBlur=0;}}
+      resizeDots(); spawnDots(); animateDots();
+      window.addEventListener("resize",()=>{resizeDots(); spawnDots();});
+      // Cloudinary gallery fetch
       fetch("https://res.cloudinary.com/dz747ahq9/image/list/Photo.json")
         .then(r=>r.ok?r.json():Promise.reject("No images found"))
         .then(data=>{
-          const gallery = document.getElementById("cloudinary-gallery");
+          const gallery=document.getElementById("cloudinary-gallery");
           if (!gallery) return;
-          data.resources.forEach(asset => {
-            let fig = document.createElement("figure");
-            let img = document.createElement("img");
-            img.src = `https://res.cloudinary.com/dz747ahq9/image/upload/${asset.public_id}.${asset.format}`;
-            img.alt = asset.public_id.split('/').pop();
+          data.resources.forEach(asset=>{
+            let fig=document.createElement("figure");
+            let img=document.createElement("img");
+            img.src=`https://res.cloudinary.com/dz747ahq9/image/upload/${asset.public_id}.${asset.format}`;
+            img.alt=asset.public_id.split('/').pop();
             fig.appendChild(img);
-            let cap = document.createElement("figcaption");
-            cap.textContent = img.alt;
-            fig.appendChild(cap);
-            gallery.appendChild(fig);
+            let cap=document.createElement("figcaption");
+            cap.textContent=img.alt; fig.appendChild(cap); gallery.appendChild(fig);
           });
         });
     </script>
