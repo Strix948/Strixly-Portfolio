@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Strixly | Home</title>
+    <title>Art & Graphics | Strixly</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@700&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css" />
     <style>
@@ -13,7 +13,6 @@
         --accent-main: #E07BE0;
         --accent-dark: #392F5A;
         --text-main: #E2E2E2;
-        --border-main: #E2E2E2;
         --glow-main: #E07BE0;
       }
       body {
@@ -23,8 +22,8 @@
         margin:0; padding:0;
         min-height:100vh;
         overflow-x: hidden;
-        transition: background 2s;
       }
+      /* Nav bar styles (use same from about/home) */
       .main-nav {
         position: sticky; top: 0;
         width: 100%;
@@ -80,6 +79,7 @@
         .nav-brand{ font-size:1.2em;}
         .nav-links { gap: 1em;}
       }
+      /* Glowing dots background (same as About/Home) */
       #all-dots-canvas {
         position: fixed;
         top:0; left:0; width:100vw; height:100vh;
@@ -88,51 +88,49 @@
         opacity: 0.38;
         transition: opacity .7s;
       }
-      .welcome-container {
-        max-width: 670px;
-        margin: 4.5em auto 0 auto;
-        padding: 3.5em 2.2em 4em 2.2em;
+      .gallery-container {
+        max-width: 880px;
+        margin: 3em auto 0 auto;
+        padding: 2.2em 1.2em 3em 1.2em;
         background: #23202a;
         border-radius: 2em;
         box-shadow: 0 9px 30px #18102b44;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.3em;
         border: 2px solid #E07BE0;
         position: relative;
         z-index: 1;
       }
-      .home-title {
-        font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
-        color: #E07BE0;
-        font-size: 2.8em;
-        margin: 0 0 .3em 0;
-        font-weight: 800;
-        text-align:center;
-      }
-      .home-intro {
-        font-size: 1.2em;
-        line-height: 1.8;
-        color: #E2E2E2;
-        text-align: center;
-        font-weight: 400;
-        margin-bottom: 0.3em;
-      }
-      .home-signature {
-        font-family: 'Nothing You Could Do', cursive;
+      .section-title {
         color: #E07BE0;
         font-size: 2em;
-        margin-top: 2em;
-        margin-bottom: 0;
-        text-align:right;
-        width:100%;
-        display:block;
-        letter-spacing:.04em;
-        text-shadow: 0 1px 10px #0007;
+        font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+        margin: 1.8em 0 1em .0em;
+        text-align:left;
       }
-      @media (max-width:700px) {
-        .welcome-container {padding: 2em 1em 2.4em 1em;}
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(210px,1fr));
+        gap: 1.2em;
+        margin-bottom: 2em;
+      }
+      .gallery figure {
+        margin:0;
+      }
+      .gallery img {
+        width: 100%;
+        border-radius: 1em;
+        box-shadow: 0 2px 22px #392F5A33;
+        background: #181820;
+        display:block;
+      }
+      .gallery figcaption {
+        color: #E2E2E2;
+        text-align: center;
+        font-size: 1em;
+        margin: .3em 0 0 0;
+      }
+      @media (max-width: 700px) {
+        .gallery-container {padding:6vw 2vw;}
+        .gallery {grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
       }
     </style>
   </head>
@@ -141,24 +139,21 @@
       <div class="nav-content">
         <span class="nav-brand">Strixly</span>
         <ul class="nav-links">
-          <li><a href="/" class="nav-link active">Home</a></li>
+          <li><a href="/" class="nav-link">Home</a></li>
           <li><a href="/about" class="nav-link">About</a></li>
+          <li><a href="/art" class="nav-link active">Art & Graphics</a></li>
+          <li><a href="/photo" class="nav-link">Photography</a></li>
+          <li><a href="/video" class="nav-link">Videography</a></li>
         </ul>
       </div>
     </nav>
-    <!-- Glowy dots background -->
     <canvas id="all-dots-canvas"></canvas>
-    <div class="welcome-container">
-      <h1 class="home-title">Welcome to Strixly’s Creative World</h1>
-      <p class="home-intro">
-        Explore original design, photography, graphics, and pure creative energy.<br>
-        This is my digital home for sharing new work, quirks, experiments, and the journey of artistic growth.<br>
-        Browse my portfolio, learn about my process, and get inspired!
-      </p>
-      <span class="home-signature">Strix xoxo</span>
+    <div class="gallery-container">
+      <h1 class="section-title">Art & Graphics Gallery</h1>
+      <div class="gallery" id="cloudinary-gallery"></div>
     </div>
     <script>
-      // Dynamic glowy dots (matching About)
+      // Glowing dots background (same as About/Home)
       const canvas = document.getElementById("all-dots-canvas");
       const ctx = canvas.getContext("2d");
       const colorNormal = ["#E07BE0","#392F5A"];
@@ -211,6 +206,25 @@
       window.addEventListener("resize", ()=>{
         resizeDots(); spawnDots();
       });
+
+      // Cloudinary automated gallery
+      fetch("https://res.cloudinary.com/dz747ahq9/image/list/Art.json")
+        .then(r=>r.ok?r.json():Promise.reject("No images found"))
+        .then(data=>{
+          const gallery = document.getElementById("cloudinary-gallery");
+          if (!gallery) return;
+          data.resources.forEach(asset => {
+            let fig = document.createElement("figure");
+            let img = document.createElement("img");
+            img.src = `https://res.cloudinary.com/dz747ahq9/image/upload/${asset.public_id}.${asset.format}`;
+            img.alt = asset.public_id.split('/').pop();
+            fig.appendChild(img);
+            let cap = document.createElement("figcaption");
+            cap.textContent = img.alt;
+            fig.appendChild(cap);
+            gallery.appendChild(fig);
+          });
+        });
     </script>
   </body>
 </html>

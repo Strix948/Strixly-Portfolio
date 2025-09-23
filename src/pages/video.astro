@@ -1,0 +1,36 @@
+---
+---
+<!-- ...head and styles same as art.astro above... -->
+    <nav class="main-nav">
+      <!-- ...nav bar... -->
+    </nav>
+    <canvas id="all-dots-canvas"></canvas>
+    <div class="gallery-container">
+      <h1 class="section-title">Videography Gallery</h1>
+      <div class="gallery" id="cloudinary-gallery"></div>
+    </div>
+    <script>
+      // Dots background (copy from above)
+      /* ... dots code same as Art page ... */
+      // Cloudinary auto gallery for Video
+      fetch("https://res.cloudinary.com/dz747ahq9/video/list/Video.json")
+        .then(r=>r.ok?r.json():Promise.reject("No videos found"))
+        .then(data=>{
+          const gallery = document.getElementById("cloudinary-gallery");
+          if (!gallery) return;
+          data.resources.forEach(asset => {
+            let fig = document.createElement("figure");
+            let vid = document.createElement("video");
+            vid.src = `https://res.cloudinary.com/dz747ahq9/video/upload/${asset.public_id}.${asset.format}`;
+            vid.controls = true;
+            vid.width = 260;
+            fig.appendChild(vid);
+            let cap = document.createElement("figcaption");
+            cap.textContent = asset.public_id.split('/').pop();
+            fig.appendChild(cap);
+            gallery.appendChild(fig);
+          });
+        });
+    </script>
+  </body>
+</html>
