@@ -25,6 +25,25 @@
         position: relative;
         overflow-x: hidden;
       }
+      body.rainbow-mode {
+        /* Beautiful vertical ROYGBIV gradient */
+        background: linear-gradient(180deg,
+            #FF0000 0%,
+            #FF7F00 16%,
+            #FFFF00 32%,
+            #00FF00 48%,
+            #0000FF 64%,
+            #4B0082 80%,
+            #9400D3 100%
+        );
+        background-size: 100% 100%;
+        animation: rainbow-bg-move 14s ease-in-out infinite alternate;
+      }
+      @keyframes rainbow-bg-move {
+        0% {background-position: top;}
+        100% {background-position: bottom;}
+      }
+
       .main-nav {
         position: sticky;
         top: 0;
@@ -36,6 +55,11 @@
         padding: 0;
         margin-bottom: 3em;
         transition: background 0.7s, border-color 0.4s;
+      }
+      body.rainbow-mode .main-nav {
+        background: linear-gradient(90deg,#ff1a1a,#ffa700,#fff700,#39ff14,#1de9b6,#3f51b5,#f06292 99%);
+        border-color: #fff700;
+        animation: gradmove 8s linear infinite alternate;
       }
       .nav-content {
         display: flex;
@@ -55,6 +79,12 @@
         margin-right: 2.5em;
         display: inline-block;
         transition: color 0.5s;
+      }
+      body.rainbow-mode .nav-brand {
+        color: #fff700;
+        background: linear-gradient(91deg,#fff700 15%,#39ff14 62%,#fb5caa 99%);
+        -webkit-background-clip: text;
+        background-clip: text;
       }
       .nav-links {
         list-style: none;
@@ -76,15 +106,25 @@
       .nav-link.active {
         color: var(--accent-main);
       }
+      body.rainbow-mode .nav-link:hover,
+      body.rainbow-mode .nav-link.active {
+        color: #fff;
+        text-shadow: 0 1px 16px #fff08f, 0 2px 6px #3f51b5;
+      }
+      @keyframes gradmove { 0%{background-position:0%;} 100%{background-position:100%;}}
       @media (max-width:700px) {
         .nav-content { padding: 0.11em 1em 0.29em 1em;}
         .nav-brand { font-size: 1.2em;}
         .nav-links { gap: 1em;}
       }
+
       #all-dots-canvas {
         position: fixed;
         top:0; left:0; width:100vw; height:100vh;
         pointer-events: none; z-index:0; opacity:0.38; transition: opacity .7s;
+      }
+      body.rainbow-mode #all-dots-canvas {
+        opacity: 0.8;
       }
       main {
         max-width: 750px;
@@ -96,6 +136,10 @@
         border: 1.5px solid var(--border-main);
         position: relative;
         z-index: 1;
+        transition: background .8s;
+      }
+      body.rainbow-mode main {
+        background: rgba(22,22,44,0.85);
       }
       h1, h2, h3 {
         font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
@@ -107,16 +151,28 @@
         color: var(--accent-main);
         font-size: 2.55rem;
         text-shadow: 1px 1px 6px var(--main-bg);
+        transition: color .5s;
       }
       h2 {
         color: var(--glow-main);
         font-size: 1.38rem;
         margin-top: 1.28em;
+        transition: color .5s;
       }
       h3 {
         color: var(--accent-main);
         font-size: 1.12rem;
         margin-top: 1.38em;
+        transition: color .5s;
+      }
+      body.rainbow-mode h1, body.rainbow-mode h2, body.rainbow-mode h3,
+      body.rainbow-mode strong, body.rainbow-mode .facts-list {
+        background: linear-gradient(97deg,#ff1a1a,#ffa700,#fff700,#39ff14,#1de9b6,#3f51b5,#f06292 95%);
+        color:transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        text-shadow: none;
+        animation: gradmove 4s linear infinite alternate;
       }
       .simple-divider {
         width: 100%;
@@ -128,6 +184,12 @@
         opacity: 0.55;
         transition: background 0.27s;
       }
+      body.rainbow-mode .simple-divider {
+        background: linear-gradient(90deg,#ff1a1a,#ffa700,#fff700,#39ff14,#1de9b6,#3f51b5,#f06292 95%);
+        opacity: 0.95;
+        animation: gradmove 5s linear infinite alternate;
+      }
+
       ul {
         padding-left: 1.45em;
         line-height: 1.7;
@@ -180,6 +242,13 @@
         font-weight: bold;
         box-shadow: 0 1.5px 10px #0006;
         height: 2.8em;
+        transition: background .4s, color .4s;
+      }
+      body.rainbow-mode .software-card {
+        background: #fff;
+        color: #E07BE0;
+        border-color: #fff;
+        animation: gradmove 3.5s linear infinite alternate;
       }
       .facts-list {
         line-height: 1.6;
@@ -217,6 +286,12 @@
         max-width: 95%;
         line-height:1.6;
       }
+      body.rainbow-mode .disclaimer-info, body.rainbow-mode .disclaimer-title {
+        background: rgba(0,0,0,0.06);
+        color: #39ff14;
+        border-left: 4px solid #fff700;
+        text-shadow: 0 1px 8px #3f51b5;
+      }
       .signature {
         font-family: 'Nothing You Could Do', cursive;
         color: var(--accent-main);
@@ -233,6 +308,14 @@
         padding-right: .5em;
         cursor: pointer;
         transition: color 0.4s, text-shadow 0.4s;
+      }
+      body.rainbow-mode .signature {
+        color: #fff;
+        background: linear-gradient(97deg,#ff1a1a,#ffa700,#fff700,#39ff14,#1de9b6,#3f51b5,#f06292 95%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        text-shadow: 0 1px 18px #fff08f, 0 2px 6px #3f51b5;
+        animation: gradmove 4s linear infinite alternate;
       }
       @media (max-width:700px) {
         main { padding: 8vw 3vw;}
@@ -342,7 +425,7 @@
           All visual artwork showcased here is human-made. I do not use AI art generators and do not support their commercial use, as it takes away from the creativity and passion of traditional and digital artists.
         </div>
       </div>
-      <span class="signature">Strix xoxo</span>
+      <span class="signature" id="strixSig">Strix xoxo</span>
     </main>
     <script>
       // Dynamic glowing dots background
@@ -396,6 +479,27 @@
       animateDots();
       window.addEventListener("resize", ()=>{
         resizeDots(); spawnDots();
+      });
+
+      // Rainbow mode easter egg toggle + redirect
+      let rainbowActive = false;
+      let rainbowTimeout;
+      const sig = document.getElementById("strixSig");
+      function setRainbow(on) {
+        if(on) {
+          document.body.classList.add("rainbow-mode");
+          rainbowActive = true;
+          rainbowTimeout = setTimeout(()=>{
+            window.location.href = "https://youtu.be/2yJgwwDcgV8?si=9qClO1CWw6a4x8Y9";
+          },15000); // 15 seconds
+        } else {
+          document.body.classList.remove("rainbow-mode");
+          rainbowActive = false;
+          clearTimeout(rainbowTimeout);
+        }
+      }
+      sig.addEventListener("dblclick", function () {
+        setRainbow(!rainbowActive);
       });
     </script>
   </body>
